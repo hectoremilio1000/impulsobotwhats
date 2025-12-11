@@ -70,6 +70,7 @@ export async function handleReport(to, tipo, fechas, restaurantId) {
   }
 
   try {
+    console.log("BOT_GATEWAY_BASE en runtime =", BOT_GATEWAY_BASE, "payload=", payload);
     const { data } = await axios.get(`${BOT_GATEWAY_BASE}/bot/sales-report`, {
       params: payload,
       headers: {
