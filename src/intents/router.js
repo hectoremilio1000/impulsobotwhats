@@ -6,6 +6,7 @@ import {
   handleSalesReportByDate,
   handleSalesReportGeneric,
 } from "../features/reports/salesHandlers.js";
+import { handleMarketingQA } from "../features/marketing/marketingHandler.js";
 import { sendText } from "../services/whatsappApi.js";
 
 export async function dispatchIntent({
@@ -30,6 +31,11 @@ export async function dispatchIntent({
 
   if (tipo === "Manual de mesero") {
     await handleWaiterManual({ to: from, phoneId });
+    return;
+  }
+
+  if (tipo === "Pregunta de marketing para el restaurante") {
+    await handleMarketingQA({ to: from, phoneId, text, restaurantId });
     return;
   }
 

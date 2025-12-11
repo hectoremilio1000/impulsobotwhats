@@ -15,9 +15,15 @@ const TYPES = [
   "Reporte de ventas anteriores o iguales a una fecha específica",
   "Reporte de ventas totales (sin fechas específicas)",
   "Manual de mesero",
+  "Pregunta de marketing para el restaurante",
 ];
 
-const FALLBACK = ["saludo", "no se entiende", "reporte de ventas", "entrevistas de trabajo"];
+const FALLBACK = [
+  "saludo",
+  "no se entiende",
+  "reporte de ventas",
+  "Pregunta de marketing para el restaurante",
+];
 
 const INTENT_PROVIDER = String(process.env.INTENT_PROVIDER || process.env.LLM_PROVIDER || "vertex")
   .replace(/['"]/g, "")
@@ -49,6 +55,8 @@ Reglas:
 - "tipo_mensaje" debe ser EXACTAMENTE uno de:
   ${TYPES.join(" | ")}
 - Si no encaja, usa uno de: ${FALLBACK.join(", ")}.
+- Si el usuario hace preguntas sobre marketing, redes sociales, promociones,
+  contenidos o tips para atraer más clientes, usa "Pregunta de marketing para el restaurante".
 - Si el usuario menciona fechas relativas, conviértelas a YYYY-MM-DD asumiendo hoy = ${nowISO}.
 - Si no hay fecha, usa null en los campos de fecha.
 - RESPONDE SOLO EL JSON.`;
